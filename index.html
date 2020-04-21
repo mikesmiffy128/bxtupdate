@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Bunnymod XT Auto Updater</title>
+		<style>
+			html, body {
+				margin: 0; padding: 0;
+				height: 100vh;
+				font-size: 16px;
+				user-select: none;
+			}
+			body {
+				background: url(https://sourceruns.org/wp-content/uploads/2016/02/background.png);
+				background-size: cover;
+				font-family: Verdana, Geneva, sans-serif;
+				color: #ea7500;
+			}
+			main {
+				box-sizing: border-box;
+				min-height: 100%;
+				padding: 4rem;
+				background: #222222;
+				margin-left: auto;
+				margin-right: auto;
+				width: 75vw;
+				max-width: 60rem;
+			}
+			h1 {
+				margin-top: 0;
+				font-weight: 500;
+			}
+			a {
+				color: white;
+				text-decoration: none;
+			}
+			a[download]::after {
+				content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV8/pCJVBytI6ZChOlkQFXGUKhbBQmkrtOpgcukXNGlIUlwcBdeCgx+LVQcXZ10dXAVB8APEydFJ0UVK/F9SaBHjwXE/3t173L0DvM0qUwz/BKCopp5OxIVcflUIvMKPYQwggrDIDC2ZWczCdXzdw8PXuxjPcj/35+iXCwYDPALxHNN0k3iDeGbT1DjvE4dYWZSJz4nHdbog8SPXJYffOJds9vLMkJ5NzxOHiIVSF0tdzMq6QjxNHJUVlfK9OYdlzluclWqdte/JXxgsqCsZrtOMIIElJJGCAAl1VFCFiRitKikG0rQfd/GHbX+KXBK5KmDkWEANCkTbD/4Hv7s1ilOTTlIwDvS8WNbHKBDYBVoNy/o+tqzWCeB7Bq7Ujr/WBGY/SW90tOgRMLgNXFx3NGkPuNwBRp40URdtyUfTWywC72f0TXlg6BboW3N6a+/j9AHIUlfLN8DBITBWoux1l3f3dvf275l2fz9yp3KnNCkpiwAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAE9JREFUGNONj8sNwDAIQ03UQTJauv8Qr5ekQshI8Q38zCfUCCDXg6JjRERIettk6q+dXQAWzNA/rIIVsquBaSF3IzCt3z1TwaFLPTdTJekDO2dt5KA2cuEAAAAASUVORK5CYII=');
+				margin-left: 0.5rem;
+			}
+			.align {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.opt {
+				font-size: 70%;
+				color: grey;
+			}
+			.codeblock {
+				background: rgba(0, 0, 0, 0.15);
+				border-radius: 4px;
+				padding: 8px;
+			}
+			code {
+				font-size: 1rem;
+				color: white;
+				border-radius: 4px;
+				padding: 2px 4px 2px 4px;
+			}
+			code.inl { background: rgba(0, 0, 0, 0.15); }
+			.red { color: rgb(255, 64, 64); }
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1>Bunnymod XT Auto Updater</h1>
+			<h2>Step 1</h2>
+			Download <a href="update.bat" download>update.bat</a> and place in
+			your Bunnymod XT folder:
+			<figure>
+				<img src="data:image/png;base64,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">
+			</figure>
+			<h2>
+				<span class="align">Step 2</span>
+				<span class="align opt">(optional)</span>
+			</h2>
+			Right-click and edit your
+			<code class="inl">Half-Life (WON).bat</code>
+			or equivalent as follows:
+			<blockquote>
+				<div class="codeblock">
+					<code>
+						@echo off<br>
+						<span class="red">
+							call "%~dp0Bunnymod XT\update.bat"
+						</span><br>
+						cd "%~dp0"<br>
+						...
+					</code>
+				</div class="codeblock">
+			</blockquote>
+			<span class="opt">
+				(the line you have to add is in <span class="red">red</span>).
+			</span>
+			<h2>Step 3</h2>
+			play the game D
+		</main>
+	</body>
+</html>
